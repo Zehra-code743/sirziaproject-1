@@ -1,29 +1,6 @@
 import streamlit as st  # type: ignore
 import pandas as pd  # type: ignore
-import random
 import plotly.express as px # type: ignore
-
-def get_motivational_quote():
-    quotes = [
-        "Precision comes from practice. Keep refining your skills!",
-        "Every challenge is an opportunity to grow. Stay resilient!",
-        "The mind, like a muscle, strengthens with use. Keep learning!",
-        "Great surgeons aren’t born, they are trained. Keep pushing forward!",
-        "Your focus determines your reality. Stay sharp!",
-        "Excellence is a habit, not an act. Keep going!"
-    ]
-    return random.choice(quotes)
-
-def get_neurosurgeon_tip():
-    tips = [
-        "Always review surgical procedures before performing them.",
-        "Maintain steady hands with regular dexterity exercises.",
-        "Stay updated with the latest medical research and advancements.",
-        "Practice mindfulness to improve concentration during surgery.",
-        "Develop a systematic approach to complex cases for better outcomes.",
-        "Balance work and rest to prevent burnout and enhance efficiency."
-    ]
-    return random.choice(tips)
 
 def main():
     st.set_page_config(page_title="NeuroThrive AI", layout="wide")
@@ -73,22 +50,21 @@ def main():
     # Motivational Quote Section
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.header("📌 Daily Motivation")
-    st.success(get_motivational_quote())
+    st.success("Excellence is a habit, not an act. Keep going!")
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Neurosurgeon Tip Section
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.header("🩺 Neurosurgeon Pro Tip")
-    st.info(get_neurosurgeon_tip())
+    st.info("Always review surgical procedures before performing them.")
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Cognitive Exercise Section
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.header("🧩 Cognitive Exercise")
-    num1, num2 = random.randint(10, 99), random.randint(10, 99)
-    user_answer = st.number_input(f"What is {num1} + {num2}?", min_value=0)
+    user_answer = st.number_input("What is 25 + 37?", min_value=0)
     if st.button("Check Answer"):
-        if user_answer == num1 + num2:
+        if user_answer == 62:
             st.success("Correct! Your mind is sharp.")
         else:
             st.error("Oops! Try again.")
@@ -105,6 +81,12 @@ def main():
         df = pd.DataFrame({"Day": days, "Productivity Score": scores})
         fig = px.line(df, x="Day", y="Productivity Score", title="Your Productivity Over the Week", markers=True)
         st.plotly_chart(fig)
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Additional Neurosurgical Facts
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    st.header("🧠 Neurosurgical Fact")
+    st.warning("The human brain has about 86 billion neurons, making it one of the most complex structures in the universe!")
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Footer
