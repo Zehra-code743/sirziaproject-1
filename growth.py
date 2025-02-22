@@ -1,7 +1,6 @@
 import streamlit as st # type: ignore
 import random
 import pandas as pd # type: ignore
-import matplotlib.pyplot as plt # type: ignore
 
 # Function to provide motivational quotes for neurosurgeons
 def get_motivational_quote():
@@ -18,16 +17,6 @@ def generate_progress_data():
     days = [f"Day {i}" for i in range(1, 8)]
     scores = [random.randint(40, 100) for _ in range(7)]
     return pd.DataFrame({'Day': days, 'Productivity Score': scores})
-
-# Function to plot the weekly progress chart
-def plot_progress_chart(df):
-    fig, ax = plt.subplots()
-    ax.plot(df['Day'], df['Productivity Score'], marker='o', linestyle='-', color='royalblue')
-    ax.set_xlabel('Days')
-    ax.set_ylabel('Productivity Score')
-    ax.set_title('Weekly Productivity Progress')
-    ax.grid(True)
-    st.pyplot(fig)
 
 # Function to provide a tip for neurosurgeons
 def get_neurosurgeon_tip():
@@ -101,12 +90,12 @@ def main():
     st.markdown("---")
     st.header("📊 Progress Tracker")
     df = generate_progress_data()
-    plot_progress_chart(df)
+    st.line_chart(df.set_index('Day'))
     
     # Footer Section
     st.markdown("---")
     st.markdown("<h4 style='text-align: center;'>© 2025 NeuroThrive AI | Empowering Neurosurgeons for Excellence | Created by Shan-E-Zehra</h4>", unsafe_allow_html=True)
     st.info("Stay consistent. The best neurosurgeons never stop learning!")
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()
